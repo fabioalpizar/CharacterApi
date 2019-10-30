@@ -3,13 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/Loader/CharacterLoader.java</file>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/CharacterApi/IWeapon.java</file>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/Loader/WeapJsonLoader.java</file>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/Builder/CharactrBuilder.java</file>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/CharacterApi/Weapon.java</file>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/CharacterApi/ICharacter.java</file>
-            <file>file:/C:/Users/Pumkin/Documents/NetBeansProjects/CharacterApi/src/CharacterApi/Charactr.java</file>
+            <file>file:/Users/kduran/Documents/CharacterApi/CharacterApi/src/Loader/CharacterJsonLoader.java</file>
         </group>
     </open-files>
 </project-private>
