@@ -5,10 +5,13 @@
  */
 package Consola;
 
+import Game.Request;
+
 /**
  *
  * @author kduran
  */
 public interface ICommand {
+    public void setRequest(Request request);
     public void execute();
 }

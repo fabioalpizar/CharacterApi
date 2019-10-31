@@ -6,7 +6,7 @@
 package Consola;
 
 import Game.Controller;
-import pro3.consola.Request;
+import Game.Request;
 
 /**
  *
@@ -29,9 +29,11 @@ public class Invoker {
     public void setRequest(String command) {
         System.out.println("Los demás datos");
         System.out.println(command);
+        commandManager.getCommand().setRequest(new Request());
     }
     
     public void comunicateConsole() {
+        
         commandManager.getCommand().execute();
     }
 }

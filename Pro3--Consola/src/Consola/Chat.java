@@ -6,6 +6,7 @@
 package Consola;
 
 import Game.Controller;
+import Game.Request;
 
 /**
  *
@@ -14,14 +15,23 @@ import Game.Controller;
 public class Chat implements ICommand{
 
     private Controller controller;
-
-    public Chat(Controller controller) {
+    private Request request;
+    private Log.Log log;
+    
+    public Chat(Controller controller, Log.Log log) {
         this.controller = controller;
+        this.log = log;
+    }
+    
+    @Override
+    public void setRequest(Request request) {
+        this.request = request;
     }
     
     @Override
     public void execute() {
-        controller.chat();
+        controller.chat(request);
+        log.chat(request);
     }
     
 }

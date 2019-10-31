@@ -5,15 +5,31 @@
  */
 package Consola;
 
+import Game.Request;
+import Log.Log;
+
 /**
  *
  * @author kduran
  */
 public class Error implements ICommand{
 
+    private Request request;
+    private Log log;
+
+    public Error(Log log) {
+        this.log = log;
+    }
+    
+    @Override
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+    
     @Override
     public void execute() {
         System.out.println("El comando no existe");
+        log.exit(request);
     }
     
 }

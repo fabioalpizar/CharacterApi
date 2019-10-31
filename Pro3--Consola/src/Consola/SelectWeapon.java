@@ -6,6 +6,7 @@
 package Consola;
 
 import Game.Controller;
+import Game.Request;
 
 /**
  *
@@ -14,14 +15,23 @@ import Game.Controller;
 public class SelectWeapon implements ICommand{
 
     private Controller controller;
-
-    public SelectWeapon(Controller controller) {
+    private Log.Log log;
+    private Request request;
+    
+    public SelectWeapon(Controller controller, Log.Log log) {
         this.controller = controller;
+        this.log = log;
+    }
+    
+    @Override
+    public void setRequest(Request request) {
+        this.request = request;
     }
     
     @Override
     public void execute() {
-        controller.selectWeapon();
+        controller.selectWeapon(request);
+        log.selectWeapon(request);
     }
     
 }

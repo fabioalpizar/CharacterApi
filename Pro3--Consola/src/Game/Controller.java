@@ -16,52 +16,68 @@ import Consola.RechargeWeapon;
 import Consola.SelectGamer;
 import Consola.SelectWeapon;
 import Consola.UseWildCard;
+import Log.Log;
 
 /**
  *
  * @author kduran
  */
-public class Controller {
+public class Controller implements IController{
     
     public boolean exit;
+    private Log log;
+
+    public Controller() {
+        this.log = new Log();
+    }
     
-    public void attack() {
+    @Override
+    public void attack(Request request) {
         System.out.println("Attack");
     }
     
-    public void chat() {
+    @Override
+    public void chat(Request request) {
         System.out.println("Chat");
     }
 
-    public void giveUp() {
+    @Override
+    public void giveUp(Request request) {
         System.out.println("GiveUp");
     }
     
-    public void mutualExit() {
+    @Override
+    public void mutualExit(Request request) {
         System.out.println("ExitM");
     }
     
-    public void nextRound() {
+    @Override
+    public void nextRound(Request request) {
         System.out.println("NextRound");
     }
     
-    public void rechargeWeapon() {
+    @Override        
+    public void rechargeWeapon(Request request) {
         System.out.println("RechargeWeapon");
     }
     
-    public void selectGamer() {
+    @Override
+    public void selectGamer(Request request) {
         System.out.println("SelectGame");
     }
     
-    public void selectWeapon() {
+    @Override
+    public void selectWeapon(Request request) {
         System.out.println("SelectWeapon");
     }
     
-    public void useWildCard() {
+    @Override
+    public void useWildCard(Request request) {
         System.out.println("UseWildCard");
     }
     
-    public void exit() {
+    @Override
+    public void exit(Request request) {
         exit = true;
     }
     
@@ -69,37 +85,37 @@ public class Controller {
         ICommand command = null;
         switch (commandString) {
             case "chat":
-                command = new Chat(this);
+                command = new Chat(this, log);
             break;
             case "att":
-                command = new Attack(this);
+                command = new Attack(this, log);
             break;
             case "gu":
-                command = new GiveUp(this);
+                command = new GiveUp(this, log);
             break;
             case "me":
-                command = new MutualExit(this);
+                command = new MutualExit(this, log);
             break;
             case "nr":
-                command = new NextRound(this);
+                command = new NextRound(this, log);
             break;
             case "rw":
-                command = new RechargeWeapon(this);
+                command = new RechargeWeapon(this, log);
             break;
             case "sg":
-                command = new SelectGamer(this);
+                command = new SelectGamer(this, log);
             break;
             case "sw":
-                command = new SelectWeapon(this);
+                command = new SelectWeapon(this, log);
             break;
             case "uwc":
-                command = new UseWildCard(this);
+                command = new UseWildCard(this, log);
             break;
             case "exit":
-                command = new Exit(this);
+                command = new Exit(this, log);
             break;
             default:
-                command = new Consola.Error();
+                command = new Consola.Error(log);
         }
         return command;
     }

@@ -6,6 +6,7 @@
 package Consola;
 
 import Game.Controller;
+import Game.Request;
 
 /**
  *
@@ -14,14 +15,23 @@ import Game.Controller;
 public class Attack implements ICommand{
 
     private Controller controller;
-
-    public Attack(Controller controller) {
+    private Request request;
+    private Log.Log log;
+    
+    public Attack(Controller controller, Log.Log log) {
         this.controller = controller;
+        this.log = log;
+    }
+
+    @Override
+    public void setRequest(Request request) {
+        this.request = request;
     }
     
     @Override
     public void execute() {
-        controller.attack();
+        controller.attack(request);
+        log.attack(request);
     }
     
 }

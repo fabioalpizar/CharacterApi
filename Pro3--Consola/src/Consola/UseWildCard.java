@@ -6,6 +6,7 @@
 package Consola;
 
 import Game.Controller;
+import Game.Request;
 
 /**
  *
@@ -13,14 +14,23 @@ import Game.Controller;
  */
 public class UseWildCard implements ICommand{
     private Controller controller;
-
-    public UseWildCard(Controller controller) {
+    private Log.Log log;
+    private Request request;
+    
+    public UseWildCard(Controller controller, Log.Log log) {
         this.controller = controller;
+        this.log = log;
+    }
+    
+    @Override
+    public void setRequest(Request request) {
+        this.request = request;
     }
     
     @Override
     public void execute() {
-        controller.useWildCard();
+        controller.useWildCard(request);
+        log.useWildCard(request);
     }
     
 }
