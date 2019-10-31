@@ -33,3 +33,5 @@ Command: chat Date: 2019/10/31 01:03:32
 Command: attack Date: 2019/10/31 01:06:42 Request Character: Po Weapon: asd
 Command: chat Date: 2019/10/31 01:08:18 Request Message: Buenas noches
 Command: use wildCard Date: 2019/10/31 01:08:49 Request Character: Po Weapon: Gl Character 2: Uh Weapon 2: UI
+Command: exit Date: 2019/10/31 08:36:38 Request
+Command: chat Date: 2019/10/31 08:36:51 Request Message: Holiii adf

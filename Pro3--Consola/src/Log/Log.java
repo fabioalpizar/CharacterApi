@@ -18,7 +18,7 @@ import java.util.Date;
 public class Log implements IController{
 
     private Archive archive;
-    private String path = "src/Log/Logs/prueba.txt";
+    private String path = "src/Log/prueba.txt";
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public Log() {
         this.archive = new Archive(path);
