@@ -31,6 +31,8 @@ public class Log implements IController{
         String data = "Command: attack";
         data += " Date: " + dateFormat.format(date);
         
+        data += " " + request.toString();
+        
         archive.writeLog(data);    
     }
 
@@ -40,6 +42,8 @@ public class Log implements IController{
         
         String data = "Command: chat";
         data += " Date: " + dateFormat.format(date);
+        
+        data += " " + request.toString();
         
         archive.writeLog(data); 
     }
@@ -51,6 +55,8 @@ public class Log implements IController{
         String data = "Command: give up";
         data += " Date: " + dateFormat.format(date);
         
+        data += " " + request.toString();
+        
         archive.writeLog(data); 
     }
 
@@ -60,6 +66,8 @@ public class Log implements IController{
         
         String data = "Command: mutual exit";
         data += " Date: " + dateFormat.format(date);
+        
+        data += " " + request.toString();
         
         archive.writeLog(data); 
     }
@@ -71,6 +79,8 @@ public class Log implements IController{
         String data = "Command: next round";
         data += " Date: " + dateFormat.format(date);
         
+        data += " " + request.toString();
+        
         archive.writeLog(data); 
     }
 
@@ -80,6 +90,8 @@ public class Log implements IController{
         
         String data = "Command: recharge weapon";
         data += " Date: " + dateFormat.format(date);
+        
+        data += " " + request.toString();
         
         archive.writeLog(data); 
     }
@@ -91,6 +103,8 @@ public class Log implements IController{
         String data = "Command: select gamer";
         data += " Date: " + dateFormat.format(date);
         
+        data += " " + request.toString();
+        
         archive.writeLog(data); 
     }
 
@@ -100,6 +114,8 @@ public class Log implements IController{
         
         String data = "Command: select weapon";
         data += " Date: " + dateFormat.format(date);
+        
+        data += " " + request.toString();
         
         archive.writeLog(data); 
     }
@@ -111,6 +127,8 @@ public class Log implements IController{
         String data = "Command: use wildCard";
         data += " Date: " + dateFormat.format(date);
         
+        data += " " + request.toString();
+        
         archive.writeLog(data); 
     }
 
@@ -120,6 +138,8 @@ public class Log implements IController{
         
         String data = "Command: exit";
         data += " Date: " + dateFormat.format(date);
+        
+        data += " " + request.toString();
         
         archive.writeLog(data); 
     }

@@ -8,6 +8,8 @@ package pro3.consola;
 import Consola.ICommand;
 import Consola.Invoker;
 import Game.Controller;
+import Game.Request;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -26,7 +28,10 @@ public class Pro3Consola {
             String entradaTeclado = "";
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-            ICommand command = controller.registerCommandString(entradaTeclado);
+            ArrayList words = controller.defineString(entradaTeclado);
+            Request request = controller.defineData(words);
+            ICommand command = controller.registerCommandString(request.command);
+            command.setRequest(request);
             invoker.setCommand(command);
             invoker.comunicateConsole();
         }

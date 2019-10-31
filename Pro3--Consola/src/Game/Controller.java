@@ -17,6 +17,7 @@ import Consola.SelectGamer;
 import Consola.SelectWeapon;
 import Consola.UseWildCard;
 import Log.Log;
+import java.util.ArrayList;
 
 /**
  *
@@ -118,5 +119,67 @@ public class Controller implements IController{
                 command = new Consola.Error(log);
         }
         return command;
+    }
+    
+    public ArrayList<String> defineString(String data){
+        ArrayList<String> words = new ArrayList<>();
+        String word = "";
+        for (int n = 0; n < data.length(); n++) { 
+            char c = data.charAt (n);
+            if(c == ' ') {
+                if (n == data.length()-1) {
+                    word+=c;
+                }
+                words.add(word);
+                word="";
+            }else{
+                word+=c;
+                if (n == data.length()-1) {
+                    words.add(word);
+                }
+                if (c == '"') {
+                    word="";
+                    n++;
+                    for (int i = n; i < data.length(); i++) {
+                        n = i;
+                        if (data.charAt (i) == '"') {
+                            break;
+                        }
+                        word += data.charAt (i);
+                    }
+                    words.add(word);
+                }
+            }
+        }
+        return words;
+    }
+    
+    public Request defineData(ArrayList<String> words) {
+        Request request = new Request();
+        request.command = words.get(0);
+        switch (request.command) {
+            case "chat":
+                request.message = words.get(1);
+            break;
+            case "att":
+                if (words.size() == 3){
+                    request.character = words.get(1);
+                    request.weapon = words.get(2);   
+                }else{
+                    request.command = "error";
+                }
+            break;
+            case "uwc":
+                if (words.size() == 5){
+                    request.character = words.get(1);
+                    request.weapon = words.get(2);
+                    request.character2 = words.get(3);
+                    request.weapon2 = words.get(4);
+                }else{
+                    request.command = "error";
+                }
+            break;
+        }
+        return request;
     }
 }
