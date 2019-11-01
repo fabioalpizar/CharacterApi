@@ -17,9 +17,10 @@ import java.util.Scanner;
  * @author kduran
  */
 public class Pro3Consola {
+    
     /**
      * @param args the command line arguments
-     */
+     
     public static void main(String[] args) {
         Controller controller= new Controller();
         Invoker invoker = new Invoker();
@@ -35,5 +36,5 @@ public class Pro3Consola {
             invoker.setCommand(command);
             invoker.comunicateConsole();
         }
-    }
+    }*/
 }
