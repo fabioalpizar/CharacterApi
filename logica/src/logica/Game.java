@@ -21,10 +21,72 @@ public class Game {
     public boolean gamerlist = false; //true = se ataca los jugadores de la lista 2
     public ArrayList<ICharacter> charactersGamer1 = new ArrayList<>(); 
     public ArrayList<ICharacter> charactersGamer2 = new ArrayList<>(); 
-    public ArrayList<IWeapon> weaponsGamer1 = new ArrayList<>(); 
-    public ArrayList<IWeapon> weaponsGamer2 = new ArrayList<>(); 
-    
+    public ArrayList<ArrayList<IWeapon>> weaponsGamer1 = new ArrayList<>(); 
+    public ArrayList<ArrayList<IWeapon>> weaponsGamer2 = new ArrayList<>(); 
 
+    public Game(Gamer gamer1, Gamer gamer2) {
+        this.gamer1 = gamer1;
+        this.gamer2 = gamer2;
+        loadWeaponsGamer1();
+        loadWeaponsGamer2();
+    }
+    //metodo donde va a entrar el request
+    public void action(String command){
+        //a la llamada de los metodos le hace falta los parametros
+        switch(command){
+             case "chat":
+                 //chat();
+                break;
+            case "att":
+                //attack();
+                break;
+            case "gu":
+                //giveUp();
+                break;
+            case "me":
+                //mutualExit();
+                break;
+            case "nr":
+                //skipTurn();
+                break;
+            case "rw":
+                //rechargeWeapons();
+                break;
+            case "sg":
+                //selectCharacter();
+                break;
+            case "sw":
+                //esto es select weapon pero no es funcional con la logica
+                break;
+            case "uwc":
+                //useWildCard();
+                break;
+        }
+       
+    }
+    
+    public void loadWeaponsGamer1(){
+        ArrayList<IWeapon> weapons = new ArrayList();
+        for (int i = 0; i < this.charactersGamer1.size(); i++) {
+            for (int j = 0; j < this.charactersGamer1.get(i).getWeapons().size(); j++) {
+                weapons.add(this.charactersGamer1.get(i).getWeapons().get(j));  
+            }
+            this.weaponsGamer1.set(i,weapons);
+            weapons.clear();
+        }
+      
+    }
+    
+    public void loadWeaponsGamer2(){
+        ArrayList<IWeapon> weapons = new ArrayList();
+        for (int i = 0; i < this.charactersGamer2.size(); i++) {
+            for (int j = 0; j < this.charactersGamer2.get(i).getWeapons().size(); j++) {
+                weapons.add(this.charactersGamer2.get(i).getWeapons().get(j));  
+            }
+            this.weaponsGamer2.set(i,weapons);
+            weapons.clear();
+        }
+    }
     
     //metodo para buscar el personaje en la lista
     public ICharacter searchCharacter(String nameCharacter){
@@ -70,22 +132,8 @@ public class Game {
          }
         return null;
     }
-        //valida que todas las armas hayan sido usadas para poder recargar
-    //si una no está en la lista de armas del jugador entonces no se recarga
-    public boolean weaponsUsed(ArrayList<IWeapon> weapons, ArrayList<ICharacter> characters){
-        for (int i = 0; i < characters.size(); i++) {
-            for (int j = 0; j < characters.get(i).getWeapons().size(); j++) {
-                IWeapon weapon = characters.get(i).getWeapons().get(j);
-                for (int k = 0; k < weapons.size(); k++) {
-                    if(!weapons.contains(weapon)){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-        return true;  
-    }
+    
+    
     //saca los tipos, suma los tipos en el arma y si son mayor a cien es exitoso
     //veo a ver cuanto danno hace el arma por tipo y se lo resto
     //meto en una lista el arma usada y solo dejo que la use si no la ha usado
@@ -116,18 +164,37 @@ public class Game {
         }
         
     }
-
+    //metodo para validar que los personajes hayan usado todas sus armas
+    public boolean validateWeapons(ArrayList<ICharacter> characters){
+        for(ICharacter character: characters){
+            if(character.getWeapons().size()>0){
+                return false;
+            }
+        }
+        return true;
+    }
+    //metodo para reinsertar las armas en cada personaje, esto para recargar
+    public void reinsertWeapons(ArrayList<ICharacter> characters, ArrayList<ArrayList<IWeapon>> weapons){
+        for (int i = 0; i < characters.size(); i++) {
+            characters.get(i).setWeapons(weapons.get(i));   
+        }
+    }
     public void rechargeWeapons(){
-      if(turn.getID()==gamer1.getID()){
-          if(weaponsUsed(this.weaponsGamer1, this.charactersGamer1)){
-              this.weaponsGamer1.clear();
-          }
-       
-      }else{
-          if(weaponsUsed(this.weaponsGamer2, this.charactersGamer2)){
-              this.weaponsGamer2.clear();
-          }
-      }
+        if(turn.getID()==gamer1.getID()){
+            if(validateWeapons(this.charactersGamer1)){
+                //metodo de reinserción a la lista de armas de cada personaje
+                reinsertWeapons(this.charactersGamer1, this.weaponsGamer1);
+            }else{
+                System.out.println("no puede recargar");
+            }
+        }else{
+            if(validateWeapons(this.charactersGamer2)){
+                //metodo de reinserción a la lista de armas de cada personaje
+                reinsertWeapons(this.charactersGamer2, this.weaponsGamer2);
+            }else{
+                System.out.println("no puede recargar");
+            }
+        }
     }
     public void useWildCard(String character1, String weapon1,String character2,
             String weapon2){
@@ -154,5 +221,6 @@ public class Game {
             //jugador 2 le manda mensaje a jugador 1
         }
     }
+    
     
 }
