@@ -236,6 +236,7 @@ public class LoginFrame extends javax.swing.JFrame {
         // Opens new window
         GameFrame gameFrame  = new GameFrame(controller);
         gameFrame.setVisible(true);
+        controller.setGameFrame(gameFrame);
         // Close actual windows
         this.dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed

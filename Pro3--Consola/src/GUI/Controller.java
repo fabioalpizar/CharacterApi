@@ -19,8 +19,10 @@ import java.util.List;
 public class Controller {
     
     private List<ICharacter> charList;
-    
     private List<ICharacter> playerCharacters;
+    private GameFrame gameFrame;
+    private String userName;
+    private String rivalName;
 
     public Controller() {
         WeapJsonLoader weaponLoader = new WeapJsonLoader();
@@ -41,10 +43,27 @@ public class Controller {
         }
     }
     
-    void setUserName(String userName) {
+    public void setUserName(String userName) {
         // contiene el username
+        this.userName = userName;
     }
     
+    public String getUserName() {
+        return this.userName;
+    }
+    
+    void setRivalName(String name) {
+        this.rivalName = name;
+    }
+    
+    public String getRivalName() {
+        setRivalName("Player 2");
+        return this.rivalName;
+    }
+
+    public List<ICharacter> getPlayerCharacters() {
+        return playerCharacters;
+    }
     
     public List<String> getImgList() {
         List<String> imgList = new ArrayList<>();
@@ -54,18 +73,10 @@ public class Controller {
         return imgList;
     }
     
-    public List<String> getCharactersImgList(){
-        List<String> imgList = new ArrayList<>();
-        for(ICharacter c: playerCharacters) {
-            imgList.add(c.getImgPaths().get(0));
-        }
-        return imgList;
-    }
-    
     public String weaponsToString(List<Integer> list) {
-        String text = "| ";
+        String text = "|\t";
         for(Integer i: list) {
-            text = text + i + " |";
+            text = text + i + " |\t";
         }
         return text;
     }
@@ -94,6 +105,18 @@ public class Controller {
 
     public ICharacter getCharacter4() {
         return playerCharacters.get(3);
+    }
+
+    void setGameFrame(GameFrame gameFrame) {
+        this.gameFrame = gameFrame;
+    }
+    
+    void addConsoleText(String message) {
+        gameFrame.addMessage(message);
+    }
+
+    public String sendMessage(String text) {
+        return text;
     }
 
 }
